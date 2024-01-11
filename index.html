@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orario Immagini</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #4CAF50;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1 {
+            color: #ffffff; 
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); 
+            margin-top: 20px;
+            transition: transform 0.5s ease; 
+        }
+
+        img:hover {
+            transform: scale(1.1); 
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Questa immagine cambia in base all'orario!</h1>
+    <img id="image" src="" alt="Immagine orario">
+
+    <script>
+        function getOrarioCorrente() {
+            const oggi = new Date();
+            const ora = oggi.getHours();
+
+            return ora;
+        }
+
+        function cambiaImmagine() {
+            const orario = getOrarioCorrente();
+            const imgElement = document.getElementById('image');
+
+            let nuovaImmagine;
+
+            if (orario >= 6 && orario < 12) {
+                nuovaImmagine = './img/mattina.jpg';
+            } else if (orario >= 12 && orario < 18) {
+                nuovaImmagine = './img/pomeriggio.jpg';
+            } else {
+                nuovaImmagine = './img/sera.jpg';
+            }
+
+            imgElement.src = nuovaImmagine;
+        }
+
+        cambiaImmagine();
+
+    </script>
+
+</body>
+</html>
